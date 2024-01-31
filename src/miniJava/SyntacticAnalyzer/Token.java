@@ -11,7 +11,7 @@ public class Token {
 	public static final HashSet<Character> dualOps = new HashSet<>(Arrays.asList('+','-')); //both unary and binary operators
 	public static final HashSet<Character> assignOps = new HashSet<>(Arrays.asList('+','/','*','-','%','|','&')); //both unary and binary operators
 
-	public static final HashMap<Character,TokenType> punctuation = new HashMap<>(){{
+	public static final HashMap<Character,TokenType> punctuation = new HashMap<Character,TokenType>(){{
 		this.put('.',TokenType.dot);
 		this.put(',',TokenType.comma);
 		this.put(':',TokenType.colon);
@@ -25,7 +25,7 @@ public class Token {
 		this.put(']',TokenType.rsquare);
 	}};
 
-	public static final HashMap<String,TokenType> keywords = new HashMap<>(){{
+	public static final HashMap<String,TokenType> keywords = new HashMap<String,TokenType>(){{
 		this.put("class", TokenType.classKeyword);
 		this.put("if",TokenType.ifKeyword);
 		this.put("else",TokenType.elseKeyword);
@@ -55,7 +55,7 @@ public class Token {
 		}
 	}};
 
-	public static final HashMap<String,TokenType> primitives = new HashMap<>(){{
+	public static final HashMap<String,TokenType> primitives = new HashMap<String,TokenType>(){{
 		this.put("int",TokenType.intPrimitive);
 		this.put("boolean",TokenType.boolPrimitive);
 		this.put("String",TokenType.stringPrimitive);
@@ -64,7 +64,7 @@ public class Token {
 		this.put("char",TokenType.charPrimitive);
 	}};
 
-	public static final HashSet<TokenType> literals = new HashSet<>(){{
+	public static final HashSet<TokenType> literals = new HashSet<TokenType>(){{
 		this.add(TokenType.boolLiteral);
 		this.add(TokenType.intLiteral);
 		this.add(TokenType.charLiteral);

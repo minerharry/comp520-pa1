@@ -257,7 +257,7 @@ public class Scanner {
 	
 	private void skipIt() {
 		nextChar();
-		if (_currentText.isEmpty()){ //if we haven't started grabbing tokens, move the start
+		if (_currentText.length() == 0){ //if we haven't started grabbing tokens, move the start
 			_startCol = _currentCol;
 			_startLine = _currentLine;
 		}

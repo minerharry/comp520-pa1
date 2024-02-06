@@ -42,7 +42,7 @@ public class Scanner {
 						return makeToken(TokenType.assignOp);
 					case '/': //single-line comment, accept until newline
 						skipIt();
-						while (_currentChar != '\n' && _currentChar != '\0'){
+						while (_currentChar != '\n' && _currentChar != 0){
 							skipIt();
 						}
 						skipIt();
@@ -52,6 +52,10 @@ public class Scanner {
 						skipIt(); // /*/ is not a complete multiline
 						char last = 0;
 						while (!(last == '*' && _currentChar == '/')){
+							if (_currentChar == 0){
+								_errors.reportError(new CompilerError("Unterminated multiline comment"));
+								return makeToken(TokenType.EOT);
+							}
 							last = _currentChar;
 							skipIt();
 						}
@@ -275,7 +279,7 @@ public class Scanner {
 			
 			// TODO: What happens if c == -1?
 			if (c == -1) { //EOF
-				_currentChar = '\0';
+				_currentChar = 0;
 			}
 
 			

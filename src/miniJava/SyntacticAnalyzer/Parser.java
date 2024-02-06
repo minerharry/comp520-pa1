@@ -303,7 +303,10 @@ public class Parser {
 		} else if (acceptOptional(TokenType.newKeyword)){
 			parseType(false); //raw type without brackets
 			if (acceptOptional(TokenType.lparen)){
-				if (!acceptOptional(TokenType.rparen)){
+				if (Compiler.IS_MINI){
+					accept(TokenType.rparen);
+				}
+				else if (!acceptOptional(TokenType.rparen)){
 					do {
 						if (_currentToken.getTokenType() == TokenType.rparen) break;
 						parseExpression();
@@ -420,6 +423,9 @@ public class Parser {
 						parseExpression();
 					} while (acceptOptional(TokenType.comma));
 					accept(TokenType.rparen);
+				}
+				if (Compiler.IS_MINI){
+					return REFERENCE_UNASSIGNABLE;
 				}
 				last_assignable = false;
 				last_id = false;
